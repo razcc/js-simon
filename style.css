@@ -26,6 +26,11 @@
     align-items: center;
 }
 
+.numeroPunteggio{
+    font-size: 30px;
+    margin-top: 20px;
+
+}
 .displayNone{
     display: none;
 }

@@ -5,7 +5,7 @@ let contatorePunteggio = 0;
 let areaNumeriCasuali = document.getElementById("areaNumeriCasuali");
 let playButtom = document.getElementById("playButtom");
 let stampaNumeriUtente = document.getElementById("stampaNumeriUtente");
-
+let numeriIndovinati = document.getElementById("numeriIndovinati");
 
 
 playButtom.addEventListener("click", function play() {
@@ -71,33 +71,45 @@ playButtom.addEventListener("click", function play() {
 
     // *Faccio apparire i 5 prompt dopo 3000ms e li metto dentro arrayNumUtente
     setTimeout(function () {
-
+        
+        let b = 0;
         // ^Compiliamo arrey numero Utenti con 5 valori
-        for (let b = 0; b < 5; b++) {
-            arrayNumUtente[b] = prompt("Inserisci i numeri che hai visto a schermo")
+        while (b < 5) {
+        let promptUtente = prompt("Inserisci i numeri che hai visto a schermo");
+
+        if (promptUtente == "") {
+            alert("Inserisci un numero")
+        }
+        else {
+            arrayNumUtente[b] = promptUtente;
+            b++
         }
 
-        //^ Stampa a schermo dei numeri UTENTE
-        for (let z = 0; z < 5; z++) {
-            let divUtente = document.createElement("div");
-            divUtente.classList.add("classNumUtente");
+    }
 
-            divUtente.innerText = arrayNumUtente[z];
-            stampaNumeriUtente.append(divUtente);
+    //* Stampa a schermo dei numeri UTENTE
+    for (let z = 0; z < 5; z++) {
+        let divUtente = document.createElement("div");
+        divUtente.classList.add("classNumUtente");
+
+        divUtente.innerText = arrayNumUtente[z];
+        stampaNumeriUtente.append(divUtente);
+    }
+
+    //* Rimettiamo aschermo i numeri casuali
+    funzioneDispalyBlock();
+
+    // ^Compariamo arrey utente con arrey numeri casulai
+    for (let c = 0; c < arrayNumUtente.length; c++) {
+        if (arrayNumCasuali[c] == arrayNumUtente[c]) {
+            contatorePunteggio = contatorePunteggio + 1
         }
+    }
 
-        // Rimettiamo aschermo i numeri casuali
-        funzioneDispalyBlock();
+    // *Stampa a schermo del totale numero azeccati
+    numeriIndovinati.innerHTML = `Hai indovinato un totale di: ${contatorePunteggio} su 5`
 
-        // ^Compariamo arrey utente con arrey numeri casulai
-        for (let c = 0; c < arrayNumUtente.length; c++) {
-            if (arrayNumCasuali[c] == arrayNumUtente[c]) {
-                contatorePunteggio = contatorePunteggio + 1
-            }
-        }
-        console.log(contatorePunteggio)
-
-    }, 3000);
+}, 3000);
 
 
 
