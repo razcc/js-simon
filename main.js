@@ -1,6 +1,6 @@
 let arrayNumCasuali = [];
 let arrayNumUtente = [];
-let contatorePunteggio = 0;
+
 
 let areaNumeriCasuali = document.getElementById("areaNumeriCasuali");
 let playButtom = document.getElementById("playButtom");
@@ -11,7 +11,13 @@ let numeriIndovinati = document.getElementById("numeriIndovinati");
 playButtom.addEventListener("click", function play() {
     // Pulizia dell'array ad ogni gioco
     arrayNumCasuali.splice(0, 5);
+    arrayNumUtente.splice(0,5);
+
     areaNumeriCasuali.innerHTML = "";
+    stampaNumeriUtente.innerHTML= "";
+    numeriIndovinati.innerHTML= "";
+
+    let contatorePunteggio = 0;
 
     let i = 0;
     // ^Generiamo i 5 numeri casuali e li mettiamo nel array
@@ -71,45 +77,45 @@ playButtom.addEventListener("click", function play() {
 
     // *Faccio apparire i 5 prompt dopo 3000ms e li metto dentro arrayNumUtente
     setTimeout(function () {
-        
+
         let b = 0;
         // ^Compiliamo arrey numero Utenti con 5 valori
         while (b < 5) {
-        let promptUtente = prompt("Inserisci i numeri che hai visto a schermo");
+            let promptUtente = prompt("Inserisci i numeri che hai visto a schermo");
 
-        if (promptUtente == "") {
-            alert("Inserisci un numero")
+            if (promptUtente == "") {
+                alert("Inserisci un numero")
+            }
+            else {
+                arrayNumUtente[b] = promptUtente;
+                b++
+            }
+
         }
-        else {
-            arrayNumUtente[b] = promptUtente;
-            b++
+
+        //* Stampa a schermo dei numeri UTENTE
+        for (let z = 0; z < 5; z++) {
+            let divUtente = document.createElement("div");
+            divUtente.classList.add("classNumUtente");
+
+            divUtente.innerText = arrayNumUtente[z];
+            stampaNumeriUtente.append(divUtente);
         }
 
-    }
+        //* Rimettiamo aschermo i numeri casuali
+        funzioneDispalyBlock();
 
-    //* Stampa a schermo dei numeri UTENTE
-    for (let z = 0; z < 5; z++) {
-        let divUtente = document.createElement("div");
-        divUtente.classList.add("classNumUtente");
-
-        divUtente.innerText = arrayNumUtente[z];
-        stampaNumeriUtente.append(divUtente);
-    }
-
-    //* Rimettiamo aschermo i numeri casuali
-    funzioneDispalyBlock();
-
-    // ^Compariamo arrey utente con arrey numeri casulai
-    for (let c = 0; c < arrayNumUtente.length; c++) {
-        if (arrayNumCasuali[c] == arrayNumUtente[c]) {
-            contatorePunteggio = contatorePunteggio + 1
+        // ^Compariamo arrey utente con arrey numeri casulai
+        for (let c = 0; c < arrayNumUtente.length; c++) {
+            if (arrayNumCasuali[c] == arrayNumUtente[c]) {
+                contatorePunteggio = contatorePunteggio + 1
+            }
         }
-    }
 
-    // *Stampa a schermo del totale numero azeccati
-    numeriIndovinati.innerHTML = `Hai indovinato un totale di: ${contatorePunteggio} su 5`
+        // *Stampa a schermo del totale numero azeccati
+        numeriIndovinati.innerHTML = `Hai indovinato un totale di: ${contatorePunteggio} su 5`
 
-}, 3000);
+    }, 3000);
 
 
 
