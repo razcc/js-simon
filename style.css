@@ -1,3 +1,15 @@
-
+.classNumCasuali{
+    margin-top: 20px;
+    margin-right: 10px;
+    font-size: 30px;
+    padding: 10px;
+    border: 1px solid black;
+    width: 100px;
+    height: 100px;
+    background-color: lightcoral;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
 
 
