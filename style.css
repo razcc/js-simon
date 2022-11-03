@@ -12,8 +12,25 @@
     align-items: center;
 }
 
+.classNumUtente{
+    margin-top: 20px;
+    margin-right: 10px;
+    font-size: 30px;
+    padding: 10px;
+    border: 1px solid black;
+    width: 100px;
+    height: 100px;
+    background-color: rgb(106, 205, 238);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
 .displayNone{
     display: none;
+}
+.displayBlock{
+    display: block;
 }
 
 
